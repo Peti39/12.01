@@ -14,3 +14,19 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model User{
+  id Int @id @default(autoincrement())
+  email String @unique
+  password String
+  profileKep String
+  wishlistedProducts Product[]
+}
+
+model Product{
+  id Int @id @default(autoincrement())
+  name String
+  experationDate DateTime?
+  price Decimal @db.Decimal(10,2)
+  whislistedByUser User[]
+}
